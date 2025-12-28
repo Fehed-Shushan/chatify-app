@@ -19,7 +19,10 @@ export async function getCsrfToken() {
         "/auth/register",
         userData,
         {
-            headers : {}
+            headers : {
+                "X-CSRF-Token": csrfToken
+            }
         }
-    )
+    );
+    return response.data;
  }
