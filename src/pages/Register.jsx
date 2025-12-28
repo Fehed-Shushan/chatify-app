@@ -1,6 +1,10 @@
+import { useState } from "react";
+
+
 function Register () {
-    return <h2>Register</h2>;
+    const [ username, setUsername] = useState ("");
+    const [email ,  setEmail] = useState("");
+    const [password, setPassword] = useState ("");
+    const [ avatar, setAvatar] = useState ("");
 
 }
-
-export default Register;
