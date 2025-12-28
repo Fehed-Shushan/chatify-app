@@ -13,7 +13,7 @@ const authApi = axios.create({
 
 // hämtar CSRF token
 export async function getCsrfToken() {
-    const response = await api.patch ("/csrf");
+    const response = await api.get ("/csrf");
     return response.data.csrfToken;
 }
 
