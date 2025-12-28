@@ -5,12 +5,6 @@ const api = axios.create({
     withCredentials: true,
 });
 
-
-// API UTAN cookies (login)
-const authApi = axios.create({
-  baseURL: "/api",
-});
-
 // hämtar CSRF token
 export async function getCsrfToken() {
     const response = await api.patch ("/csrf");
