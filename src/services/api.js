@@ -1,8 +1,8 @@
 import axios from "axios";
 
 const api = axios.create({
-    baseURL: " https://chatify-api.up.railway.app",
-    withCredentials: true
+    baseURL: "/api",
+    withCredentials: true,
 });
 
 // hämtar CSRF token
