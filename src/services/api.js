@@ -5,6 +5,12 @@ const api = axios.create({
     withCredentials: true,
 });
 
+
+// API UTAN cookies (login)
+const authApi = axios.create({
+  baseURL: "/api",
+});
+
 // hämtar CSRF token
 export async function getCsrfToken() {
     const response = await api.patch ("/csrf");
@@ -29,8 +35,9 @@ export async function getCsrfToken() {
 
  // Login- hämta JWT
  export async function loginUser(credentials) {
-    const response = await api.post("/auth/token", credentials);
-    
- }
+  const response = await authApi.post("/auth/token", credentials);
 
-     return response.data;
+  return response.data;
+}
+
+ 
