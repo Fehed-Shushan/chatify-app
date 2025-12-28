@@ -25,5 +25,12 @@ export async function getCsrfToken() {
             withCredentials: true,
         }
     );
-    return response.data;
  }
+
+ // Login- hämta JWT
+ export async function loginUser(credentials) {
+    const response = await api.post("/auth/token", credentials);
+    
+ }
+
+     return response.data;
