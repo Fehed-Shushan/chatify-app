@@ -21,7 +21,8 @@ export async function getCsrfToken() {
         {
             headers : {
                 "X-CSRF-Token": csrfToken
-            }
+            },
+            withCredentials: true,
         }
     );
     return response.data;
