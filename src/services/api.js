@@ -6,7 +6,7 @@ const api = axios.create({
 });
 
 export async function getCsrfToken() {
-  const response = await api.patch("/csrf");
+  const response = await api.get("/csrf");
   return response.data.csrfToken;
 }
 
@@ -20,7 +20,6 @@ export async function registerUser(userData) {
       headers: {
         "X-CSRF-Token": csrfToken,
       },
-      withCredentials: true,
     }
   );
 
