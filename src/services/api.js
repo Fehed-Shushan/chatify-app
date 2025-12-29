@@ -7,48 +7,45 @@ const api = axios.create({
 
 let csrfToken = null;
 
-async function ensureCsrf() {
+
+export async function initCsrf() {
   if (!csrfToken) {
-    const res = await api.patch("/csrf", null, {
-      withCredentials: true,
-    });
+    const res = await api.patch("/csrf");
     csrfToken = res.data.csrfToken;
   }
   return csrfToken;
 }
 
-// REGISTER
-export async function registerUser(userData) {
-  const token = await ensureCsrf();
 
-  const response = await api.post(
+export async function registerUser(userData) {
+  await initCsrf();
+
+  const res = await api.post(
     "/auth/register",
     userData,
     {
       headers: {
-        "X-CSRF-Token": token,
+        "X-CSRF-Token": csrfToken,
       },
-      withCredentials: true,
     }
   );
 
-  return response.data;
+  return res.data;
 }
 
-// LOGIN
-export async function loginUser(username, password) {
-  const token = await ensureCsrf();
 
-  const response = await api.post(
+export async function loginUser(username, password) {
+  await initCsrf();
+
+  const res = await api.post(
     "/auth/token",
     { username, password },
     {
       headers: {
-        "X-CSRF-Token": token,
+        "X-CSRF-Token": csrfToken,
       },
-      withCredentials: true,
     }
   );
 
-  return response.data;
+  return res.data;
 }
