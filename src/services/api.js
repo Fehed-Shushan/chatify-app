@@ -2,16 +2,17 @@ import axios from "axios";
 
 const api = axios.create({
   baseURL: "https://chatify-api.up.railway.app",
-  withCredentials: true, 
+  withCredentials: true,
 });
 
 let csrfToken = null;
 
-
+// HÄMTAS EN GÅNG PER SESSION
 export async function initCsrf() {
   if (!csrfToken) {
     const res = await api.patch("/csrf");
-    csrfToken = res.data.csrfToken; 
+    csrfToken = res.data.csrfToken;
+    console.log("CSRF SET:", csrfToken);
   }
 }
 
